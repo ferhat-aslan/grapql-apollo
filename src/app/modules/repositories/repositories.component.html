@@ -1,0 +1,45 @@
+<section
+  class="w-full h-screen p-4 flex flex-col justify-start items-center gap-y-7"
+>
+  <app-header class="w-full"></app-header>
+  <main
+    class="w-full lg:w-3/4 h-full flex flex-col justify-between items-start"
+  >
+
+  <h2 class="text-xl font-bold">Public Repositories</h2>
+    <ul class="flex flex-col w-full justify-start items-start gap-4">
+      <ng-container *ngFor="let repo of repos">
+        <app-list-item [repository]="repo" class="w-full"></app-list-item>
+      </ng-container>
+    </ul>
+
+    <!--PAGINATION-->
+    <div class="flex flex-row justify-start items-center gap-x-3 mt-10 mb-2">
+      <button [disabled]="!pageInfo.hasPreviousPage || isLoading"
+      (click)="prevPage()"
+        class="border border-stone-200 p-2 rounded-lg hover:bg-stone-200 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+      >
+        < Prev
+      </button>
+      <button
+      [disabled]="!pageInfo.hasNextPage || isLoading"
+      (click)="nextPage()"
+        class="border border-stone-200 p-2 rounded-lg hover:bg-stone-200 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+      >
+        Next >
+      </button>
+      <select
+      [disabled]="isLoading"
+        name=""
+        id=""
+        [value]="pageSize"
+        class="border border-stone-200 p-2 rounded-lg"
+        (change)="onPageSizeChanged($event)"
+      >
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="50">50</option>
+      </select>
+    </div>
+  </main>
+</section>

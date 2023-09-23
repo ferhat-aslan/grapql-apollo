@@ -1,0 +1,35 @@
+<section
+  class="w-screen h-screen p-4 flex flex-col justify-center items-center gap-y-7 text-center"
+>
+  <h1 class="font-bold text-3xl">Github Issue Explorer</h1>
+  <p class="text-lg">
+    Enter your API Token to start browsing issues of public repositories:
+  </p>
+
+  <form
+    [formGroup]="tokenFormGroup"
+    class="flex flex-col justify-start items-center"
+  >
+    <label for="">Your API Token:</label>
+    <input
+      formControlName="token"
+      type="text"
+      class="bg-gray-200 rounded-lg py-2 px-2"
+      placeholder="type your API Token..."
+    />
+    <p class="text-red-500 text-sm">{{error | async}}</p>
+    <button
+      (click)="submitToken()"
+      [disabled]="tokenFormGroup.invalid"
+      type="submit"
+      class="submit-button"
+    >
+      Start Browsing
+    </button>
+    <p></p>
+  </form>
+
+  <p class="text-sm mt-10 text-slate-400">
+    It is only stored on your machine as long as you are on this page.
+  </p>
+</section>
