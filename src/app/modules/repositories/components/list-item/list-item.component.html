@@ -1,15 +1,19 @@
- <li [routerLink]="'/'+repository.repo.owner.login+'/'+repository.repo.name" class="w-full flex flex-row justify-center items-center gap-3 border border-slate-100 rounded-lg p-2 cursor-pointer hover:bg-slate-100">
-  <img [src]="repository.repo.owner.avatarUrl" alt="" class="w-16 h-16 rounded-full object-cover" />
+ <li [routerLink]="'/'+repository.owner?.login+'/'+repository.name" class="w-full flex flex-row justify-center items-center gap-3 border border-slate-100 rounded-lg p-2 cursor-pointer hover:bg-slate-100">
+  <img [src]="repository.owner?.avatarUrl" alt="" class="w-16 h-16 rounded-full object-cover" />
   <div class="flex flex-col justify-between items-start w-full">
     <h3 class="font-bold">
-      {{ repository.repo.name }}
+      {{ repository.name }}
     </h3>
     <p class="text-slate-500 text-sm">
-      {{ repository.repo.owner.login }}
+      {{ repository.owner?.login }}
     </p>
     <span class="text-slate-500 text-sm flex flex-row justify-start items-start gap-x-2">
         <img src="assets/star.svg" alt="">
-    <p>{{ repository.repo.stargazers.totalCount }}</p>  
+    <p>{{ repository.stargazers?.totalCount }}</p>  
     </span>
+    <span class="text-slate-500 text-sm flex flex-row justify-start items-start gap-x-2">
+      <img src="assets/bug.svg" alt="">
+  <p>{{ repository.issues?.totalCount }}</p>  
+  </span>
   </div>
 </li> 

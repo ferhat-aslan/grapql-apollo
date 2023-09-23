@@ -1,23 +1,101 @@
 <section
-  class="w-screen h-screen p-4 flex flex-col justify-start items-center gap-y-7"
+  class="w-full h-screen p-4 flex flex-col justify-start items-start gap-y-7"
 >
   <app-header class="w-full"></app-header>
 
-  <main class="w-full lg:w-3/4 h-full flex flex-col justify-start items-center gap-y-10">
-    <!--REPOSITORY OWNER DETAİL-->
-    <div class="flex flex-row justify-start items-center gap-x-2 w-full">
-      <img src="" alt="" class="w-16 h-16 object-cover" />
+  <main
+    class="w-full lg:w-3/4 h-full flex flex-col justify-start items-start gap-y-10 mx-auto"
+  >
+    <!--REPOSITORY OWNER DETAIL-->
+    <h2 class="text-xl font-bold">About Repository</h2>
+    <div
+      class="flex flex-row justify-start items-center gap-x-2 w-full border border-slate-300 rounded-lg p-2"
+    >
+      <img [src]="owner.avatarUrl" alt="" class="w-16 h-16 object-cover" />
       <span class="w-full flex flex-col justify-start items-start">
-        <h3>John Does</h3>
-        <p>Gaziantep, Turkey</p>
-        <a href="mailto:test@test.com"></a>
+        <h3 class="font-bold text-lg">{{ owner.login }}</h3>
+        <p class="text-slate-400 text-sm">
+          {{ owner.repositories?.totalCount }} Repositories
+        </p>
+        <a
+          [href]="owner.url"
+          target="_blank"
+          class="text-blue-500 flex flex-row justify-start items-start gap-x-2"
+          ><span>Go to Profile</span>
+          <img src="assets/box-arrow-up-right.svg" alt=""
+        /></a>
       </span>
     </div>
+
+    <!--ABOUT REPOSITORY-->
+    <h2 class="text-xl font-bold">About Repository</h2>
+    <div class="w-full flex flex-col justify-start items-start gap-2 border border-slate-300 rounded-lg p-3 ">
+      <h4 class="font-bold text-xl">{{repositoryInfo.name}}</h4>
+      <p class="text-slate-500">{{repositoryInfo.watchers?.totalCount}} watchers</p>
+      <span class="flex flex-row justify-start items-center gap-x-2"><img src="assets/star.svg" alt=""> <p>{{repositoryInfo.stargazerCount}}</p></span>
+      <p class="text-slate-500">updatedAt: {{repositoryInfo.updatedAt | date: 'shortDate'}}</p>
+      <p class="text-slate-500"> {{repositoryInfo.pullRequests?.totalCount}} pull Requests</p>
+      <a
+          [href]="repositoryInfo.url"
+          target="_blank"
+          class="text-blue-500 flex flex-row justify-start items-start gap-x-2"
+          ><span>Go to repository</span>
+          <img src="assets/box-arrow-up-right.svg" alt=""
+        /></a>
+
+
+    </div>
     <!--ISSUES-->
-    <ul>
-      <li>
-        first issue
+    <h2 class="text-xl font-bold">Public Issues : {{repositoryInfo.issues?.totalCount}}</h2>
+    <ul class="gap-2 mx-auto w-full">
+      <li
+        *ngFor="let issue of issues"
+        class="border border-slate-300 rounded-lg my-2 p-2 w-full gap-2 flex flex-col justify-start items-start"
+      >
+        <h4 class="font-bold text-lg">{{ issue.node?.title }}</h4>
+        <span
+          class="text-sm font-bold"
+          [ngClass]="issue.node?.closed ? 'text-red-500' : 'text-green-500'"
+          >{{ issue.node?.closed ? "Closed" : "Open" }}</span
+        >
+        <span>comments: {{ issue.node?.comments?.totalCount }}</span>
+        <a
+          [href]="issue.node?.url"
+          target="_blank"
+          class="text-blue-500 flex flex-row justify-start items-start gap-x-2"
+          ><span>Go to issue</span>
+          <img src="assets/box-arrow-up-right.svg" alt=""
+        /></a>
       </li>
     </ul>
+    <!--PAGINATION-->
+    <div class="flex flex-row justify-start items-center gap-x-3 mt-10 mb-2">
+      <button
+        [disabled]="!pageInfo.hasPreviousPage || isLoading"
+        (click)="prevPage()"
+        class="border border-stone-200 p-2 rounded-lg hover:bg-stone-200 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+      >
+        < Prev
+      </button>
+      <button
+        [disabled]="!pageInfo.hasNextPage || isLoading"
+        (click)="nextPage()"
+        class="border border-stone-200 p-2 rounded-lg hover:bg-stone-200 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+      >
+        Next >
+      </button>
+      <select
+        [disabled]="isLoading"
+        name=""
+        id=""
+        [value]="pageSize"
+        class="border border-stone-200 p-2 rounded-lg"
+        (change)="onPageSizeChanged($event)"
+      >
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="50">50</option>
+      </select>
+    </div>
   </main>
 </section>

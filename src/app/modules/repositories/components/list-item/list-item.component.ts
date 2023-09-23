@@ -7,5 +7,5 @@ import { Repository } from 'src/app/models/repository';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent {
-@Input() public repository!: any;
+@Input() public repository!: Repository;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ApiTokenEntryService {
   private _apiToken: BehaviorSubject<string> = new BehaviorSubject<string>('');
   
-  get apiToken() {
+  get apiToken(): string {
     return this._apiToken.getValue();
   }
 
@@ -18,7 +18,10 @@ export class ApiTokenEntryService {
   //set token eğer token doğrusuyla beavioru subjectte tut. diğer sayfalarda kullanırsın
 
   public setApiToken(value: string): void {
+
     if (typeof value !== 'string') return;
+
     this._apiToken.next(value);
+    
   }
 }

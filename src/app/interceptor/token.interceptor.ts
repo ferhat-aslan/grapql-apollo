@@ -22,7 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this._loadingService.setIsLoading(true);
     const token = this._apiTokenEntry.apiToken;
-    console.log(token);
+
     
     if (token) {
       // If we have a token, we set it to the header

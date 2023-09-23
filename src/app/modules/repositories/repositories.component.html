@@ -9,7 +9,7 @@
   <h2 class="text-xl font-bold">Public Repositories</h2>
     <ul class="flex flex-col w-full justify-start items-start gap-4">
       <ng-container *ngFor="let repo of repos">
-        <app-list-item [repository]="repo" class="w-full"></app-list-item>
+        <app-list-item [repository]="repo.repo" class="w-full"></app-list-item>
       </ng-container>
     </ul>
 
