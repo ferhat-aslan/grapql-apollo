@@ -25,6 +25,8 @@ export class ApiTokenEntryComponent {
 
   public error!: Observable<string>;
 
+  public isLoading:boolean =false;
+
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private _apiTokenEntryService: ApiTokenEntryService,
@@ -45,21 +47,24 @@ export class ApiTokenEntryComponent {
   }
 
   public submitToken(): void {
+  
 
-    if (this.tokenFormGroup.invalid) {
+    if (this.tokenFormGroup.invalid || this.isLoading) {
       //show error toast
       return;
     }
-
+      this.isLoading =true;
     const { token } = this.tokenFormGroup.value;
 
     this._apiTokenEntryService.setApiToken(token);
 
     this._repositoriesService.getRepositories(10, null).subscribe({
       next: (res) => {
+        this.isLoading=false;
         this._router.navigate(['repositories']);
       },
       error: (err) => {
+        this.isLoading=false;
         this._apiTokenEntryService.setApiToken('');
         console.log(err);
       },

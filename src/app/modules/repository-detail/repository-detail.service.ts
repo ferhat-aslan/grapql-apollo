@@ -11,7 +11,7 @@ import { IssueResponse } from 'src/app/models/issue';
 export class RepositoryDetailService {
   private _repositoryDetail: BehaviorSubject<IssueResponse | null> = new BehaviorSubject<IssueResponse |null>(null);
 
-  get repositoryDetail$(){
+  get repositoryDetail$(): Observable<IssueResponse |null>{
     return this._repositoryDetail.asObservable();
   }
   constructor(private _apollo: Apollo) {}

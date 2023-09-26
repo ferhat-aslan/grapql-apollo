@@ -23,7 +23,7 @@
     </span>
     <button
       (click)="submitToken()"
-      [disabled]="tokenFormGroup.invalid"
+      [disabled]="tokenFormGroup.invalid || isLoading"
       type="submit"
       class="submit-button"
     >
