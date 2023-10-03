@@ -19,7 +19,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
       - [About](#about-project)
       - [Used Packages And Modules](#used-packages-and-modules)
       - [Getting Started](#getting-started)
-      - [Server](#server)
       - [Prerequisites](#prerequisites)
       - [Installation](#installation)
       - [Contact](#contact)

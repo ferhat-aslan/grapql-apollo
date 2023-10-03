@@ -20,12 +20,11 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./api-token-entry.component.scss'],
 })
 export class ApiTokenEntryComponent {
-
   public tokenFormGroup: UntypedFormGroup;
 
   public error!: Observable<string>;
 
-  public isLoading:boolean =false;
+  public isLoading: boolean = false;
 
   constructor(
     private _formBuilder: UntypedFormBuilder,
@@ -34,37 +33,33 @@ export class ApiTokenEntryComponent {
     private _repositoriesService: RepositoriesService,
     private _loadingService: LoadingService
   ) {
-
     this.error = this._loadingService.hasError$;
 
     this.tokenFormGroup = _formBuilder.group({
-      token: new UntypedFormControl(
-        '',
-        [Validators.required, Validators.minLength(7)]
-      ),
+      token: new UntypedFormControl('', [
+        Validators.required,
+        Validators.minLength(7),
+      ]),
     });
-
   }
 
   public submitToken(): void {
-  
-
     if (this.tokenFormGroup.invalid || this.isLoading) {
       //show error toast
       return;
     }
-      this.isLoading =true;
+    this.isLoading = true;
     const { token } = this.tokenFormGroup.value;
 
     this._apiTokenEntryService.setApiToken(token);
 
     this._repositoriesService.getRepositories(10, null).subscribe({
       next: (res) => {
-        this.isLoading=false;
+        this.isLoading = false;
         this._router.navigate(['repositories']);
       },
       error: (err) => {
-        this.isLoading=false;
+        this.isLoading = false;
         this._apiTokenEntryService.setApiToken('');
         console.log(err);
       },

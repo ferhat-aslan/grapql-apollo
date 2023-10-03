@@ -26,6 +26,11 @@ const routes: Routes = [
         (m) => m.RepositoryDetailModule
       ),
   },
+  { path: '**', pathMatch: 'full', 
+  loadChildren: () =>
+  import('./modules/page404/page404.module').then(
+    (m) => m.Page404Module
+  ),},
 ];
 
 @NgModule({
