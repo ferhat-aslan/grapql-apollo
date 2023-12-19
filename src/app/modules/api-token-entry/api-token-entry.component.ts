@@ -45,7 +45,7 @@ export class ApiTokenEntryComponent {
 
   public submitToken(): void {
     if (this.tokenFormGroup.invalid || this.isLoading) {
-      //show error toast
+    
       return;
     }
     this.isLoading = true;

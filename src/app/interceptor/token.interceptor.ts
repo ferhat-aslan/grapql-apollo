@@ -23,7 +23,6 @@ export class TokenInterceptor implements HttpInterceptor {
     this._loadingService.setIsLoading(true);
     const token = this._apiTokenEntry.apiToken;
 
-    
     if (token) {
       // If we have a token, we set it to the header
       request = request.clone({
@@ -38,19 +37,16 @@ export class TokenInterceptor implements HttpInterceptor {
           this._loadingService.setIsLoading(false);
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
-            
-              
-              this._loadingService.setError(err.error.message)
-              
+              this._loadingService.setError(err.error.message);
             }
           }
-         return err;
+          return err;
         })
       )
       .pipe(
         tap((res: any) => {
           if (res.status) {
-            this._loadingService.setError('')
+            this._loadingService.setError('');
             this._loadingService.setIsLoading(false);
           }
         })

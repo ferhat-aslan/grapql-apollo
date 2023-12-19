@@ -1,4 +1,4 @@
-<h1 align="center"><img src="./src/assets/leanix-logo.png" alt="" width="auto" height="25" />Coding Challange Ferhat<img src="./src/assets/leanix-logo.png" alt="" width="auto" height="25" /></h1>
+<h1 align="center">Angular 16 GrapQL Apollo</h1>
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
@@ -58,7 +58,7 @@ You will build a web application using Angular that allows users to browse publi
 
    
 
-- Use any stylesheet format you prefer. We use SCSS at LeanIX.
+- Use any stylesheet format you prefer. 
 
    
 

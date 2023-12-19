@@ -1,13 +1,13 @@
-<section
-  class="w-full h-screen p-4 flex flex-col justify-start items-center gap-y-7"
+<section  
+  class="w-full  p-4 flex flex-col justify-start items-center gap-y-7"
 >
   <app-header class="w-full"></app-header>
-  <main
+  <main 
     class="w-full lg:w-3/4 h-full flex flex-col justify-between items-start"
   >
 
   <h2 class="text-xl font-bold">Public Repositories</h2>
-    <ul class="flex flex-col w-full justify-start items-start gap-4">
+    <ul class="flex flex-col w-full justify-start items-start gap-4"  id="scroll-area">
       <ng-container *ngFor="let repo of repos">
         <app-list-item [repository]="repo.repo" class="w-full"></app-list-item>
       </ng-container>

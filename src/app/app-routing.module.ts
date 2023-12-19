@@ -10,27 +10,28 @@ const routes: Routes = [
         (m) => m.ApiTokenEntryModule
       ),
   },
-   {
+  {
     path: 'repositories',
-    canActivate:[authGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/repositories/repositories.module').then(
         (m) => m.RepositoriesModule
       ),
-  }, 
+  },
   {
     path: ':repositoryOwner/:repository',
-    canActivate:[authGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/repository-detail/repository-detail.module').then(
         (m) => m.RepositoryDetailModule
       ),
   },
-  { path: '**', pathMatch: 'full', 
-  loadChildren: () =>
-  import('./modules/page404/page404.module').then(
-    (m) => m.Page404Module
-  ),},
+  {
+    path: '**',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('./modules/page404/page404.module').then((m) => m.Page404Module),
+  },
 ];
 
 @NgModule({

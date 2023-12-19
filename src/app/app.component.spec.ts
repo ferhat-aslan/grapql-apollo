@@ -14,11 +14,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'coding-challenge-ferhat'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('coding-challenge-ferhat');
-  });
+
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);

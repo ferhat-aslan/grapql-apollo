@@ -39,6 +39,8 @@ export class RepositoriesService {
       .valueChanges.pipe(
         tap((res) => {
           if (res) {
+            console.log(res);
+            
             this._repositoriesResponse.next(res);
           }
         })
